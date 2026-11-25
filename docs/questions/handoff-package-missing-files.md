@@ -6,7 +6,6 @@ referenced but were not in the package. A human needs to supply them:
 
 - `docs/ARCHITECTURE.md`: rings, packages, dependency rules, determinism boundary (referenced by `HANDOFF.md` and `AGENTS.md`)
 - `docs/adr/0003-llms-propose-checkers-decide.md`
-- `docs/adr/0010-licensing.md`: decision pending (proposal: Apache-2.0 core, AGPL control plane)
 - `docs/adr/0011-independent-checks.md`
 - `docs/adr/0012-differential-testing.md`
 - `docs/adr/0016-area-agents-and-measurement.md`
