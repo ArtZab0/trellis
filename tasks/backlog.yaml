@@ -1,0 +1,193 @@
+# Ready tasks for M0–M3. Later milestones: the planner agent expands docs/MILESTONES.md
+# and docs/components/* into tasks in this same format; a human approves each batch.
+# status: todo | claimed | done | blocked
+
+version: 1
+tasks:
+  # ---------- M0 Bootstrap ----------
+  - id: M0-01
+    goal: Create pnpm workspace, Turborepo, base tsconfig (ADR-0001 flags), empty packages per AGENTS.md layout
+    accept: [every package builds; pnpm verify runs typecheck+lint+test; Node version pinned]
+    tierCeiling: 3
+    status: todo
+  - id: M0-02
+    goal: ESLint flat config with typescript-eslint strict-type-checked + Biome formatting
+    accept: [lint runs in CI; formatting check fails on unformatted file]
+    dependsOn: [M0-01]
+    status: todo
+  - id: M0-03
+    goal: dependency-cruiser config encoding docs/ARCHITECTURE.md package rules
+    accept: [fixture PR importing cli from core fails; live/ restriction enforced for node built-ins]
+    dependsOn: [M0-01]
+    status: todo
+  - id: M0-04
+    goal: GitHub Actions CI running pnpm verify with pinned actions (commit SHAs) and read-only default permissions
+    accept: [CI green on main; actions pinned by SHA; permissions read-all by default]
+    dependsOn: [M0-02, M0-03]
+    status: todo
+  - id: M0-05
+    goal: CODEOWNERS, PR template (task id, criteria→verification, test summary, evidence link), labels
+    accept: [contracts/ADRs/.trellis/.github owned by humans; PR template present]
+    dependsOn: [M0-01]
+    status: todo
+
+  # ---------- M1 Contracts & config ----------
+  - id: M1-01
+    goal: Effect Schema for TrellisConfig + Constitution with loaders and LoadError (file/line/path/fix)
+    accept: [CORE-01 for both, CORE-02, CORE-03]
+    dependsOn: [M0-04]
+    status: todo
+  - id: M1-02
+    goal: Effect Schema for Feature, RulePackage, Baseline, TaskSpec, LedgerEvent
+    accept: [CORE-01 for each]
+    dependsOn: [M1-01]
+    status: todo
+  - id: M1-03
+    goal: Effect Schema for Spec incl. FieldType and Clause (expressions kept as strings until M4)
+    accept: [CORE-01; 10 valid + 10 invalid spec fixtures]
+    dependsOn: [M1-01]
+    status: todo
+  - id: M1-04
+    goal: Effect Schema for EvidenceBundle, Certificate (incl. checks.byOrigin, differential, trends), GateReport, CheckOrigin + canonical JSON + reproHash function
+    accept: [CORE-01; canonical JSON is key-sorted and stable; reproHash excludes issuedAt/signatures (property test)]
+    dependsOn: [M1-01]
+    status: todo
+  - id: M1-05
+    goal: JSON Schema generation (pnpm gen) for all contracts into schemas/
+    accept: [generated files committed; CI fails if stale]
+    dependsOn: [M1-02, M1-03, M1-04]
+    status: todo
+  - id: M1-06
+    goal: core.loadProject + tierOf
+    accept: [CORE-04; loadProject on fixture repos returns typed Project or LoadErrors]
+    dependsOn: [M1-02, M1-03]
+    status: todo
+  - id: M1-07
+    goal: CLI shell (command registry, --json, exit codes) + trellis init
+    accept: [CLI-01]
+    dependsOn: [M1-06]
+    status: todo
+  - id: M1-08
+    goal: CodeHost service interface + recorded fake + GitHub live adapter (rulesets, required checks, labels, CODEOWNERS, app perms read)
+    accept: [fake and live share one contract test suite; live suite runs against a scratch repo in a manual workflow]
+    dependsOn: [M1-06]
+    status: todo
+  - id: M1-09
+    goal: trellis github sync and trellis doctor
+    accept: [CLI-02, CLI-03]
+    dependsOn: [M1-07, M1-08]
+    status: todo
+
+  # ---------- M2 Rules engine & certified stack ----------
+  - id: M2-01
+    goal: Rule package loader + fixtures harness (testRule)
+    accept: [RULES-03; harness API documented]
+    dependsOn: [M1-02]
+    status: todo
+  - id: M2-02
+    goal: Engine adapters eslint + trellis-native (size, complexity, comments, suppressions)
+    accept: [RULES-02 for these engines; RULES-05]
+    dependsOn: [M2-01]
+    status: todo
+  - id: M2-03
+    goal: Engine adapters ast-grep, semgrep, dependency-cruiser
+    accept: [RULES-02 for these engines; one sample rule each with fixtures]
+    dependsOn: [M2-01]
+    status: todo
+  - id: M2-04
+    goal: Ratchet/baseline manager with content-hashed locations + trellis rules rebaseline
+    accept: [RULES-04]
+    dependsOn: [M2-02]
+    status: todo
+  - id: M2-05
+    goal: stack-ts rules part 1 — ADR-0002 bans (any, as, !, throw, null domain types, inheritance, enums, default exports)
+    accept: [RULES-01 for these rules; RULES-06]
+    dependsOn: [M2-02, M2-03]
+    status: todo
+  - id: M2-06
+    goal: stack-ts rules part 2 — no-ambient-io, no-suppressions, comment-policy, size-limits, schema-at-boundary
+    accept: [RULES-01 for these rules]
+    dependsOn: [M2-05]
+    status: todo
+  - id: M2-07
+    goal: stack-ts rules part 3 — no-use-effect-in-product, ui-kit-only, machine-for-lifecycle
+    accept: [RULES-01 for these rules]
+    dependsOn: [M2-05]
+    status: todo
+  - id: M2-08
+    goal: trellis check CLI + enable stack rules on this repo, fix all violations, zero baselines
+    accept: [RULES-07]
+    dependsOn: [M2-06, M2-07]
+    status: todo
+  - id: M2-09
+    goal: oxlint engine adapter + vendor anti-slop rules (pinned commit) wrapped as rule packages with fixtures; port TypeScript-applicable SlopCodeBench rules
+    accept: [RULES-08; vendor/LICENSES.md filled and approved by a human before vendoring]
+    dependsOn: [M2-02]
+    status: todo
+  - id: M2-10
+    goal: markdown-cap and prototype-lane rules
+    accept: [RULES-09]
+    dependsOn: [M2-02]
+    status: todo
+
+  # ---------- M3 Gate, certificate, policy, GitHub App ----------
+  - id: M3-01
+    goal: Gate runner — stage model, GateServices (no network, simulated clock, seeded random), ordered merge, GateReport
+    accept: [GATE-02, GATE-03]
+    dependsOn: [M2-08, M1-04]
+    status: todo
+  - id: M3-02
+    goal: Stages static, stack-rules, unit, build wired to existing tools
+    accept: [each stage has pass/fail fixtures]
+    dependsOn: [M3-01]
+    status: todo
+  - id: M3-03
+    goal: classify stage with diff-intent v0
+    accept: [GATE-04]
+    dependsOn: [M3-01]
+    status: todo
+  - id: M3-04
+    goal: Pinned gate container image (Node, pnpm, semgrep, browsers placeholder) published by digest
+    accept: [image digest recorded in this repo's trellis.yaml; rebuild is reproducible or differences documented]
+    dependsOn: [M3-02]
+    status: todo
+  - id: M3-05
+    goal: Certificate issuance + Sigstore signing + verification library
+    accept: [GATE-05]
+    dependsOn: [M3-02, M1-04]
+    status: todo
+  - id: M3-06
+    goal: Reproducibility job (rerun gate on N commits, compare reproHash)
+    accept: [GATE-01]
+    dependsOn: [M3-04, M3-05]
+    status: todo
+  - id: M3-07
+    goal: Policy engine (decide) + area trust state machine
+    accept: [POL-01, POL-02, POL-03]
+    dependsOn: [M1-06]
+    status: todo
+  - id: M3-08
+    goal: GitHub App server — webhooks, trellis/policy check, labels, policy-app approvals, idempotency
+    accept: [GH-01, GH-02, GH-03]
+    dependsOn: [M3-07, M1-08]
+    status: todo
+  - id: M3-09
+    goal: Reusable gate workflow (gate loaded from default branch) + switch this repo to require trellis/gate and trellis/policy
+    accept: [GATE-06; Trellis PRs merge only with certificates]
+    dependsOn: [M3-05, M3-08, M3-10, M3-12]
+    status: todo
+  - id: M3-10
+    goal: Check provenance — compute CheckOrigin per test/check; traceability counts independent origins only; certificate checks block
+    accept: [GATE-08]
+    dependsOn: [M3-02, M3-05]
+    status: todo
+  - id: M3-11
+    goal: Trend metrics library — erosion, verbosity, lines per clause, build time; METRICS.md definitions (constitution file)
+    accept: [metric functions are pure and property-tested; definitions reviewed by a human]
+    dependsOn: [M3-01]
+    status: todo
+  - id: M3-12
+    goal: trend gate stage with deterministic baseline recomputed from main's last N commits; tier raise on breach
+    accept: [GATE-09]
+    dependsOn: [M3-11, M3-03]
+    status: todo
