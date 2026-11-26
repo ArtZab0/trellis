@@ -1,23 +1,30 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { basename } from "node:path";
+import { relative } from "node:path";
+import { Result } from "effect";
 import { describe, expect, it } from "vitest";
 import { derivedFiles, schemasDir } from "./files.ts";
 
-describe("M1-05 generated files are committed and current", () => {
-  const files = derivedFiles();
+describe("generated files are committed and current (run pnpm gen if these fail)", () => {
+  const derived = derivedFiles();
+  const files = derived.flatMap((d) => (Result.isSuccess(d) ? [d.success] : []));
+  const schemas = files.filter(({ path }) => path.startsWith(schemasDir));
 
-  it("one JSON Schema per contract (11)", () => {
-    expect(files).toHaveLength(11);
+  it("every derived file could be derived", () => {
+    expect(derived.flatMap((d) => (Result.isFailure(d) ? [d.failure] : []))).toEqual([]);
+  });
+
+  it("M1-05: one JSON Schema per contract (11)", () => {
+    expect(schemas).toHaveLength(11);
   });
 
   for (const { path, text } of files) {
-    it(`schemas/${basename(path)} matches the Effect Schema (run pnpm gen if this fails)`, () => {
+    it(`${relative(`${schemasDir}/..`, path)} matches its source`, () => {
       expect(existsSync(path) ? readFileSync(path, "utf8") : "missing").toBe(text);
     });
   }
 
-  it("schemas/ holds no stale schema files (run pnpm gen if this fails)", () => {
-    const wanted = files.map(({ path }) => basename(path)).sort();
+  it("schemas/ holds no stale schema files", () => {
+    const wanted = schemas.map(({ path }) => relative(schemasDir, path)).sort();
     const present = readdirSync(schemasDir)
       .filter((name) => name.endsWith(".schema.json"))
       .sort();
