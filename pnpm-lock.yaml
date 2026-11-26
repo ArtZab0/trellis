@@ -127,9 +127,18 @@ importers:
 
   tooling/gen:
     dependencies:
+      '@trellis/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@trellis/github':
+        specifier: workspace:*
+        version: link:../../packages/github
       '@trellis/schema':
         specifier: workspace:*
         version: link:../../packages/schema
+      effect:
+        specifier: 4.1.4
+        version: 4.1.4
 
   tooling/lint-checks: {}
 

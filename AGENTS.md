@@ -10,7 +10,7 @@ Read `HANDOFF.md` first. This file is a map, not a manual. Keep it under 120 lin
 | `pnpm verify` | typecheck + lint + certified-stack rules + tests (+ gate from M3) |
 | `pnpm test --filter <pkg>` | Tests for one package |
 | `pnpm trellis <cmd>` | Run the CLI from source |
-| `pnpm gen` | Regenerate derived files (today: `schemas/*.schema.json`; CI fails if stale) |
+| `pnpm gen` | Regenerate derived files (`schemas/*.schema.json` and `CODEOWNERS`; CI fails if stale) |
 
 ## Layout
 
