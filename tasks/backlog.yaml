@@ -36,7 +36,7 @@ tasks:
     goal: Effect Schema for TrellisConfig + Constitution with loaders and LoadError (file/line/path/fix)
     accept: [CORE-01 for both, CORE-02, CORE-03]
     dependsOn: [M0-04]
-    status: todo
+    status: done
   - id: M1-02
     goal: Effect Schema for Feature, RulePackage, Baseline, TaskSpec, LedgerEvent
     accept: [CORE-01 for each]

@@ -1,0 +1,18 @@
+version: 1
+project: { name: trellis, repo: ArtZab0/trellis }
+stack: { pack: stack-ts-v1, version: 1.0.0 }
+specPacks:
+  - { name: spec-ledger, version: 0.1.0 }
+adapters:
+  codeHost: github
+  ci: github-actions
+  sandbox: docker
+  agents:
+    - { id: impl, runner: claude-code }
+  artifactStore: { kind: s3, endpoint: "https://s3.example.com", bucket: evidence }
+gate:
+  image: "ghcr.io/artzab0/trellis-gate@sha256:0000000000000000000000000000000000000000000000000000000000000000"
+  seeds: { properties: [1, 2, 3], dst: [7], mutation: 42 }
+  bounds: { machineDepth: 12, dstStepsPerSeed: 10000, propertyRuns: 1000 }
+  thresholds: { mutation: 1.5, maxPrLines: 400 }
+budgets: { usdPerTask: 8, usdPerDay: 100, usdPerMonth: 2000 }
