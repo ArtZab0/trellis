@@ -24,7 +24,7 @@ tasks:
     goal: GitHub Actions CI running pnpm verify with pinned actions (commit SHAs) and read-only default permissions
     accept: [CI green on main; actions pinned by SHA; permissions read-all by default]
     dependsOn: [M0-02, M0-03]
-    status: todo
+    status: done
   - id: M0-05
     goal: CODEOWNERS, PR template (task id, criteria→verification, test summary, evidence link), labels
     accept: [contracts/ADRs/.trellis/.github owned by humans; PR template present]
