@@ -1,0 +1,4 @@
+
+> @trellis/evals@0.0.0 build /home/zabar/trellis/packages/evals
+> tsc -p tsconfig.json
+

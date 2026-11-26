@@ -1,0 +1,4 @@
+
+> @trellis/github@0.0.0 typecheck /home/zabar/trellis/packages/github
+> tsc -p tsconfig.json --noEmit
+

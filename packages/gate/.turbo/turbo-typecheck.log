@@ -1,0 +1,4 @@
+
+> @trellis/gate@0.0.0 typecheck /home/zabar/trellis/packages/gate
+> tsc -p tsconfig.json --noEmit
+

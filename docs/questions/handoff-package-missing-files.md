@@ -4,7 +4,6 @@ Found while organizing the repo on 2026-11-25. The package arrived flat, with th
 under the wrong names. Each file was moved to the path its heading names. These files are
 referenced but were not in the package. A human needs to supply them:
 
-- `docs/ARCHITECTURE.md`: rings, packages, dependency rules, determinism boundary (referenced by `HANDOFF.md` and `AGENTS.md`)
 - `docs/adr/0003-llms-propose-checkers-decide.md`
 - `docs/adr/0011-independent-checks.md`
 - `docs/adr/0012-differential-testing.md`

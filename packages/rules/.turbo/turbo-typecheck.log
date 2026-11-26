@@ -1,0 +1,4 @@
+
+> @trellis/rules@0.0.0 typecheck /home/zabar/trellis/packages/rules
+> tsc -p tsconfig.json --noEmit
+

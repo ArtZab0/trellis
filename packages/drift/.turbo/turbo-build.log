@@ -1,0 +1,4 @@
+
+> @trellis/drift@0.0.0 build /home/zabar/trellis/packages/drift
+> tsc -p tsconfig.json
+

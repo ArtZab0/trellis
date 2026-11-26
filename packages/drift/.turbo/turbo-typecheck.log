@@ -1,0 +1,4 @@
+
+> @trellis/drift@0.0.0 typecheck /home/zabar/trellis/packages/drift
+> tsc -p tsconfig.json --noEmit
+

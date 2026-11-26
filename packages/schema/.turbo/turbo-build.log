@@ -1,0 +1,4 @@
+
+> @trellis/schema@0.0.0 build /home/zabar/trellis/packages/schema
+> tsc -p tsconfig.json
+

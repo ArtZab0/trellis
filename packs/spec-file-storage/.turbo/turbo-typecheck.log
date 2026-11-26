@@ -1,0 +1,4 @@
+
+> @trellis/pack-spec-file-storage@0.0.0 typecheck /home/zabar/trellis/packs/spec-file-storage
+> tsc -p tsconfig.json --noEmit
+

@@ -1,0 +1,4 @@
+
+> @trellis/gate@0.0.0 build /home/zabar/trellis/packages/gate
+> tsc -p tsconfig.json
+

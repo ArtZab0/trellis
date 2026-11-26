@@ -1,0 +1,4 @@
+
+> @trellis/orchestrator@0.0.0 build /home/zabar/trellis/packages/orchestrator
+> tsc -p tsconfig.json
+

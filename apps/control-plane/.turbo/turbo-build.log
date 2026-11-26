@@ -1,0 +1,4 @@
+
+> @trellis/control-plane@0.0.0 build /home/zabar/trellis/apps/control-plane
+> tsc -p tsconfig.json
+

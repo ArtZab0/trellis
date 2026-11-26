@@ -1,0 +1,4 @@
+
+> @trellis/pack-stack-ts-v1@0.0.0 typecheck /home/zabar/trellis/packs/stack-ts-v1
+> tsc -p tsconfig.json --noEmit
+

@@ -1,0 +1,4 @@
+
+> @trellis/pack-spec-accounts-roles@0.0.0 build /home/zabar/trellis/packs/spec-accounts-roles
+> tsc -p tsconfig.json
+

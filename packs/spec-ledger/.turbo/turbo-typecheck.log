@@ -1,0 +1,4 @@
+
+> @trellis/pack-spec-ledger@0.0.0 typecheck /home/zabar/trellis/packs/spec-ledger
+> tsc -p tsconfig.json --noEmit
+

@@ -1,0 +1,4 @@
+
+> @trellis/evidence@0.0.0 build /home/zabar/trellis/packages/evidence
+> tsc -p tsconfig.json
+
