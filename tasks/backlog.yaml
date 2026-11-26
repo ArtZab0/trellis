@@ -9,7 +9,7 @@ tasks:
     goal: Create pnpm workspace, Turborepo, base tsconfig (ADR-0001 flags), empty packages per AGENTS.md layout
     accept: [every package builds; pnpm verify runs typecheck+lint+test; Node version pinned]
     tierCeiling: 3
-    status: todo
+    status: done
   - id: M0-02
     goal: ESLint flat config with typescript-eslint strict-type-checked + Biome formatting
     accept: [lint runs in CI; formatting check fails on unformatted file]
