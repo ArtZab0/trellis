@@ -15,5 +15,10 @@ export {
   ReadFailed,
   UnsupportedVersion,
 } from "./load/errors.js";
+export {
+  certificateContract,
+  evidenceContract,
+  gateReportContract,
+} from "./load/gate-contracts.js";
 export { loadContract } from "./load/load.js";
 export { type Contract, parseContract, printContract } from "./load/parse.js";
