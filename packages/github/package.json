@@ -18,6 +18,7 @@
     "test:live": "vitest run --config vitest.live.config.ts"
   },
   "dependencies": {
+    "@trellis/core": "workspace:*",
     "@trellis/schema": "workspace:*",
     "effect": "4.1.4"
   },
