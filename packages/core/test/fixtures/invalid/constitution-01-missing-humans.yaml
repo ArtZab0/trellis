@@ -1,0 +1,51 @@
+# Constitution for the Trellis repo itself. Human-owned. Changes require a `constitution` PR.
+version: 1
+paths:
+  tier3:
+    - ".trellis/**"
+    - ".github/**"
+    - "CODEOWNERS"
+    - "docs/CONTRACTS.md"
+    - "docs/adr/**"
+    - "packages/gate/**"
+    - "packages/core/src/policy/**"
+    - "packages/evidence/src/signing/**"
+    - "packages/stack-ts/rules/**"
+    - "pnpm-lock.yaml"
+  tier2:
+    - "packages/schema/**"
+    - "packages/github/**"
+    - "packages/orchestrator/src/adapters/**"
+    - "package.json"
+    - "packages/*/package.json"
+  tier0:
+    - "docs/plans/**"
+    - "**/*.md"
+trust:
+  earn: { consecutiveCleanMerges: 20, minMutationScore: 0.7, require: [properties, spec-clauses] }
+  demoteOn: [escaped_defect, revert, incident]
+automerge:
+  tier0: false                # a human flips this per ADR-0008 at M8
+  tier1: false
+breaker:
+  revertRate7d: 0.015
+  escapedPer100: 1.0
+  changeFailureRate: 0.05
+  costSpikeMultiple: 2.0
+dependencies:
+  allow: []                   # populated from docs/adr/0009-dependencies.md in M1
+  requireTier: 2
+uncertifiedZones: []
+trends:
+  baselineCommits: 50
+  erosionMaxIncrease: 0.01
+  verbosityMaxIncrease: 0.01
+  linesPerClauseMax: 400        # provisional; recalibrate at M4 once Trellis has its own spec
+  buildSecondsMax: 300
+prototypes:
+  globs: ["prototypes/**"]
+  defaultExpiryDays: 30
+  flagRequired: true
+markdown:
+  agentWritableGlobs: ["docs/plans/**", "docs/questions/**", "packages/*/README.md"]
+  maxBytesPerFile: 12000

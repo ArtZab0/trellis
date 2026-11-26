@@ -1,0 +1,221 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-01-missing-project.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 1,
+  "fix": "Add the required key "project" at the top level.",
+  "line": 1,
+  "message": "Missing key",
+  "path": "project",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-02-bad-repo.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 33,
+  "fix": "Change project.repo so it matches: Expected a GitHub repo as "owner/name". See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 2,
+  "message": "Expected a GitHub repo as "owner/name"",
+  "path": "project.repo",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-03-unknown-runner.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 27,
+  "fix": "Change adapters.agents[0].runner so it matches: Expected "claude-code" | "codex" | "cursor" | "openhands". See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 11,
+  "message": "Expected "claude-code" | "codex" | "cursor" | "openhands"",
+  "path": "adapters.agents[0].runner",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-04-unpinned-image.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 10,
+  "fix": "Change gate.image so it matches: Expected an image pinned by digest, such as ghcr.io/org/img@sha256:<64 hex>. See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 14,
+  "message": "Expected an image pinned by digest, such as ghcr.io/org/img@sha256:<64 hex>",
+  "path": "gate.image",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-05-mutation-over-one.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 27,
+  "fix": "Change gate.thresholds.mutation so it matches: Expected a value between 0 and 1. See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 17,
+  "message": "Expected a value between 0 and 1",
+  "path": "gate.thresholds.mutation",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-06-negative-budget.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 38,
+  "fix": "Change budgets.usdPerDay so it matches: Expected a value greater than or equal to 0. See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 18,
+  "message": "Expected a value greater than or equal to 0",
+  "path": "budgets.usdPerDay",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-07-unknown-key.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 9,
+  "fix": "Remove "colour" at the top level, or fix its spelling; it is not part of the TrellisConfig format.",
+  "line": 19,
+  "message": "Expected no excess property",
+  "path": "colour",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-08-bad-semver.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 38,
+  "fix": "Change stack.version so it matches: Expected a semver such as 1.4.0. See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 3,
+  "message": "Expected a semver such as 1.4.0",
+  "path": "stack.version",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-09-syntax-error.yaml 1`] = `
+{
+  "_tag": "InvalidYaml",
+  "column": 3,
+  "fix": "Fix the YAML syntax at this position.",
+  "line": 10,
+  "message": "Flow sequence in block collection must be sufficiently indented and end with a ]",
+  "path": "",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 config-10-wrong-type.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 44,
+  "fix": "Change gate.thresholds.maxPrLines so it matches: Expected number. See docs/CONTRACTS.md (TrellisConfig).",
+  "line": 17,
+  "message": "Expected number",
+  "path": "gate.thresholds.maxPrLines",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-01-missing-humans.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 1,
+  "fix": "Add the required key "humans" at the top level.",
+  "line": 2,
+  "message": "Missing key",
+  "path": "humans",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-02-bad-login.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 10,
+  "fix": "Change humans[0] so it matches: Expected a GitHub login or team, such as "@org/core". See docs/CONTRACTS.md (Constitution).",
+  "line": 3,
+  "message": "Expected a GitHub login or team, such as "@org/core"",
+  "path": "humans[0]",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-03-unknown-demote.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 30,
+  "fix": "Change trust.demoteOn[1] so it matches: Expected "escaped_defect" | "revert" | "incident". See docs/CONTRACTS.md (Constitution).",
+  "line": 27,
+  "message": "Expected "escaped_defect" | "revert" | "incident"",
+  "path": "trust.demoteOn[1]",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-04-tier1-true.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 10,
+  "fix": "Change automerge.tier1 so it matches: Expected false, or { whenArea: earned, samplingRate: <0..1> }. See docs/CONTRACTS.md (Constitution).",
+  "line": 30,
+  "message": "Expected false, or { whenArea: earned, samplingRate: <0..1> }",
+  "path": "automerge.tier1",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-05-require-tier-one.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 16,
+  "fix": "Change dependencies.requireTier so it matches: Expected 2 | 3. See docs/CONTRACTS.md (Constitution).",
+  "line": 38,
+  "message": "Expected 2 | 3",
+  "path": "dependencies.requireTier",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-06-rate-over-one.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 17,
+  "fix": "Change breaker.revertRate7d so it matches: Expected a value between 0 and 1. See docs/CONTRACTS.md (Constitution).",
+  "line": 32,
+  "message": "Expected a value between 0 and 1",
+  "path": "breaker.revertRate7d",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-07-flag-not-required.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 17,
+  "fix": "Change prototypes.flagRequired so it matches: Expected true. See docs/CONTRACTS.md (Constitution).",
+  "line": 49,
+  "message": "Expected true",
+  "path": "prototypes.flagRequired",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-08-fractional-days.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 22,
+  "fix": "Change prototypes.defaultExpiryDays so it matches: Expected an integer. See docs/CONTRACTS.md (Constitution).",
+  "line": 48,
+  "message": "Expected an integer",
+  "path": "prototypes.defaultExpiryDays",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-09-duplicate-key.yaml 1`] = `
+{
+  "_tag": "InvalidYaml",
+  "column": 1,
+  "fix": "Fix the YAML syntax at this position.",
+  "line": 53,
+  "message": "Map keys must be unique",
+  "path": "",
+}
+`;
+
+exports[`CORE-02 invalid files produce a LoadError with file, line and a one-line fix > CORE-02 constitution-10-not-a-mapping.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 1,
+  "fix": "Write the file as key: value pairs; see docs/CONTRACTS.md (Constitution).",
+  "line": 1,
+  "message": "Expected a YAML mapping at the top level",
+  "path": "",
+}
+`;
