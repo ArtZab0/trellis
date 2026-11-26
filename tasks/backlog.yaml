@@ -14,7 +14,7 @@ tasks:
     goal: ESLint flat config with typescript-eslint strict-type-checked + Biome formatting
     accept: [lint runs in CI; formatting check fails on unformatted file]
     dependsOn: [M0-01]
-    status: todo
+    status: done
   - id: M0-03
     goal: dependency-cruiser config encoding docs/ARCHITECTURE.md package rules
     accept: [fixture PR importing cli from core fails; live/ restriction enforced for node built-ins]
