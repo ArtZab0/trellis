@@ -42,6 +42,15 @@ importers:
 
   packages/cli:
     dependencies:
+      '@trellis/core':
+        specifier: workspace:*
+        version: link:../core
+      '@trellis/github':
+        specifier: workspace:*
+        version: link:../github
+      '@trellis/schema':
+        specifier: workspace:*
+        version: link:../schema
       effect:
         specifier: 4.1.4
         version: 4.1.4

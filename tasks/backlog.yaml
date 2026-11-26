@@ -66,7 +66,7 @@ tasks:
     goal: CLI shell (command registry, --json, exit codes) + trellis init
     accept: [CLI-01]
     dependsOn: [M1-06]
-    status: todo
+    status: done
   - id: M1-08
     goal: CodeHost service interface + recorded fake + GitHub live adapter (rulesets, required checks, labels, CODEOWNERS, app perms read)
     accept: [fake and live share one contract test suite; live suite runs against a scratch repo in a manual workflow]
