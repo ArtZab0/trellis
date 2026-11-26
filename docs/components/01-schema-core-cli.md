@@ -15,7 +15,7 @@ Load, validate and print every contract; give users `trellis init`, `trellis doc
   - `trellis github sync`
 
 ## Acceptance criteria
-- **CORE-01** Every contract round-trips: `parse(print(x)) ≡ x` for generated `x` (fast-check, 1,000 runs, fixed seed).
+- **CORE-01** Every contract round-trips: `parse(print(x)) ≡ x` for generated `x` (Effect `Arbitrary` from the Schema, 1,000 runs, fixed seed; ADR-0001).
 - **CORE-02** Invalid files produce a `LoadError` with file, line and a one-line fix suggestion; snapshot-tested for 20 invalid fixtures.
 - **CORE-03** Unknown `version` is rejected with an upgrade hint.
 - **CORE-04** `tierOf` returns the max over path tiers and feature tiers; property: adding a path never lowers the tier.
