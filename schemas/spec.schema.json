@@ -1,0 +1,783 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "spec",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [
+        1
+      ]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "version"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "policies": {
+      "type": "object",
+      "properties": {
+        "money": {
+          "type": "object",
+          "properties": {
+            "minorUnits": {
+              "type": "boolean",
+              "enum": [
+                true
+              ]
+            },
+            "rounding": {
+              "type": "string",
+              "enum": [
+                "half-even",
+                "half-up"
+              ]
+            },
+            "currencies": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "minorUnits",
+            "rounding",
+            "currencies"
+          ],
+          "additionalProperties": false
+        },
+        "time": {
+          "type": "object",
+          "properties": {
+            "storage": {
+              "type": "string",
+              "enum": [
+                "utc"
+              ]
+            },
+            "display": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "org-local",
+                    "user-local"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            }
+          },
+          "required": [
+            "storage",
+            "display"
+          ],
+          "additionalProperties": false
+        },
+        "retention": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "keep": {
+                "type": "string"
+              },
+              "then": {
+                "type": "string",
+                "enum": [
+                  "delete",
+                  "anonymize"
+                ]
+              }
+            },
+            "required": [
+              "keep",
+              "then"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "personalData": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "purpose": {
+                "type": "string",
+                "minLength": 1
+              },
+              "readableBy": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "purpose",
+              "readableBy"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "entities": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "$ref": "#/$defs/FieldType"
+            }
+          },
+          "key": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "fields",
+          "key"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        }
+      }
+    },
+    "commands": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "$ref": "#/$defs/FieldType"
+            }
+          },
+          "actor": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "clauses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "input",
+          "actor",
+          "effects",
+          "clauses"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "machines": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "string"
+          },
+          "initial": {
+            "type": "string"
+          },
+          "states": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "on": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "terminal": {
+                  "type": "boolean",
+                  "enum": [
+                    true
+                  ]
+                },
+                "timeout": {
+                  "type": "object",
+                  "properties": {
+                    "after": {
+                      "type": "string"
+                    },
+                    "to": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "after",
+                    "to"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "entity",
+          "initial",
+          "states"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "says": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "default",
+                  "redteam",
+                  "incident"
+                ]
+              },
+              {
+                "type": "string",
+                "pattern": "^pack:[\\s\\S]*?$"
+              }
+            ]
+          },
+          "approval": {
+            "type": "object",
+            "properties": {
+              "by": {
+                "type": "string",
+                "minLength": 1
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "via": {
+                "type": "string",
+                "enum": [
+                  "scenario-replay",
+                  "prototype",
+                  "text"
+                ]
+              }
+            },
+            "required": [
+              "by",
+              "at",
+              "via"
+            ],
+            "additionalProperties": false
+          },
+          "expr": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "says",
+          "source",
+          "expr"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "says": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "default",
+                  "redteam",
+                  "incident"
+                ]
+              },
+              {
+                "type": "string",
+                "pattern": "^pack:[\\s\\S]*?$"
+              }
+            ]
+          },
+          "approval": {
+            "type": "object",
+            "properties": {
+              "by": {
+                "type": "string",
+                "minLength": 1
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "via": {
+                "type": "string",
+                "enum": [
+                  "scenario-replay",
+                  "prototype",
+                  "text"
+                ]
+              }
+            },
+            "required": [
+              "by",
+              "at",
+              "via"
+            ],
+            "additionalProperties": false
+          },
+          "given": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "do": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "as": {
+                      "type": "string"
+                    },
+                    "with": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "do"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "at": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "at"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "when": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "do": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "as": {
+                      "type": "string"
+                    },
+                    "with": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "do"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "at": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "at"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "then": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "says",
+          "source",
+          "given",
+          "when",
+          "then"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "budgets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "says": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "user",
+                  "default",
+                  "redteam",
+                  "incident"
+                ]
+              },
+              {
+                "type": "string",
+                "pattern": "^pack:[\\s\\S]*?$"
+              }
+            ]
+          },
+          "approval": {
+            "type": "object",
+            "properties": {
+              "by": {
+                "type": "string",
+                "minLength": 1
+              },
+              "at": {
+                "type": "string",
+                "minLength": 1
+              },
+              "via": {
+                "type": "string",
+                "enum": [
+                  "scenario-replay",
+                  "prototype",
+                  "text"
+                ]
+              }
+            },
+            "required": [
+              "by",
+              "at",
+              "via"
+            ],
+            "additionalProperties": false
+          },
+          "metric": {
+            "type": "string",
+            "minLength": 1
+          },
+          "max": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string",
+            "enum": [
+              "instructions",
+              "bytes",
+              "ms",
+              "count"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "says",
+          "source",
+          "metric",
+          "max",
+          "unit"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "version",
+    "id",
+    "packs",
+    "policies",
+    "entities",
+    "roles",
+    "permissions",
+    "commands",
+    "machines",
+    "invariants",
+    "scenarios",
+    "budgets"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "FieldType": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "Id",
+            "Text",
+            "Bool",
+            "Int",
+            "Decimal",
+            "Money",
+            "Currency",
+            "Instant",
+            "Date",
+            "Duration",
+            "Email",
+            "Url"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "enum": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "enum"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ref"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "list": {
+              "$ref": "#/$defs/FieldType"
+            }
+          },
+          "required": [
+            "list"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "optional": {
+              "$ref": "#/$defs/FieldType"
+            }
+          },
+          "required": [
+            "optional"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Text"
+              ]
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            },
+            "pattern": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Int",
+                "Decimal",
+                "Money"
+              ]
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

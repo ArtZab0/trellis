@@ -56,7 +56,7 @@ tasks:
     goal: JSON Schema generation (pnpm gen) for all contracts into schemas/
     accept: [generated files committed; CI fails if stale]
     dependsOn: [M1-02, M1-03, M1-04]
-    status: todo
+    status: done
   - id: M1-06
     goal: core.loadProject + tierOf
     accept: [CORE-04; loadProject on fixture repos returns typed Project or LoadErrors]

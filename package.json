@@ -14,7 +14,8 @@
     "verify": "biome format . && turbo run build typecheck lint test && pnpm deps",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "deps": "depcruise -c .dependency-cruiser.cjs -T err packages/*/src packages/*/test apps/*/src packs/*/src tooling/*/src"
+    "deps": "depcruise -c .dependency-cruiser.cjs -T err packages/*/src packages/*/test apps/*/src packs/*/src tooling/*/src",
+    "gen": "turbo run build --filter=@trellis/schema && pnpm --filter @trellis/tooling-gen gen"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.7",

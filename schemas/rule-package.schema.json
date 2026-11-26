@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "rule-package",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [
+        1
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "api-ban",
+        "boundary",
+        "structure",
+        "semantic",
+        "ratchet",
+        "type",
+        "comment",
+        "suppression"
+      ]
+    },
+    "engine": {
+      "type": "string",
+      "enum": [
+        "eslint",
+        "ast-grep",
+        "semgrep",
+        "dependency-cruiser",
+        "trellis"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "include"
+      ],
+      "additionalProperties": false
+    },
+    "tier": {
+      "type": "number",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fixtures": {
+      "type": "object",
+      "properties": {
+        "bad": {
+          "type": "string",
+          "minLength": 1
+        },
+        "good": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "bad",
+        "good"
+      ],
+      "additionalProperties": false
+    },
+    "codemod": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baseline": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "version",
+    "id",
+    "kind",
+    "engine",
+    "scope",
+    "tier",
+    "message",
+    "fixtures"
+  ],
+  "additionalProperties": false
+}

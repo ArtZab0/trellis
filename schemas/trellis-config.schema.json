@@ -1,0 +1,378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "trellis-config",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [
+        1
+      ]
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repo": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "repo"
+      ],
+      "additionalProperties": false
+    },
+    "stack": {
+      "type": "object",
+      "properties": {
+        "pack": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pack",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "specPacks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "version"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "adapters": {
+      "type": "object",
+      "properties": {
+        "codeHost": {
+          "type": "string",
+          "enum": [
+            "github"
+          ]
+        },
+        "ci": {
+          "type": "string",
+          "enum": [
+            "github-actions"
+          ]
+        },
+        "sandbox": {
+          "type": "string",
+          "enum": [
+            "docker",
+            "e2b",
+            "modal",
+            "firecracker"
+          ]
+        },
+        "agents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "runner": {
+                "type": "string",
+                "enum": [
+                  "claude-code",
+                  "codex",
+                  "cursor",
+                  "openhands"
+                ]
+              },
+              "model": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "runner"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "artifactStore": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "s3"
+              ]
+            },
+            "endpoint": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bucket": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "endpoint",
+            "bucket"
+          ],
+          "additionalProperties": false
+        },
+        "flags": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "openfeature"
+              ]
+            },
+            "provider": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "provider"
+          ],
+          "additionalProperties": false
+        },
+        "telemetry": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "otel"
+              ]
+            },
+            "endpoint": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "endpoint"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "codeHost",
+        "ci",
+        "sandbox",
+        "agents",
+        "artifactStore"
+      ],
+      "additionalProperties": false
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "maintenance",
+        "construction"
+      ]
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "image": {
+            "type": "string"
+          },
+          "protocol": {
+            "type": "string",
+            "enum": [
+              "s3",
+              "http",
+              "cli",
+              "file-format"
+            ]
+          },
+          "generators": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "allowlist": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minInputs": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "id",
+          "image",
+          "protocol",
+          "generators",
+          "allowlist",
+          "minInputs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "gate": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "seeds": {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "dst": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "mutation": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "properties",
+            "dst",
+            "mutation"
+          ],
+          "additionalProperties": false
+        },
+        "bounds": {
+          "type": "object",
+          "properties": {
+            "machineDepth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "dstStepsPerSeed": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "propertyRuns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "machineDepth",
+            "dstStepsPerSeed",
+            "propertyRuns"
+          ],
+          "additionalProperties": false
+        },
+        "thresholds": {
+          "type": "object",
+          "properties": {
+            "mutation": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "maxPrLines": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "mutation",
+            "maxPrLines"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "image",
+        "seeds",
+        "bounds",
+        "thresholds"
+      ],
+      "additionalProperties": false
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "usdPerTask": {
+          "type": "number",
+          "minimum": 0
+        },
+        "usdPerDay": {
+          "type": "number",
+          "minimum": 0
+        },
+        "usdPerMonth": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "usdPerTask",
+        "usdPerDay",
+        "usdPerMonth"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "project",
+    "stack",
+    "specPacks",
+    "adapters",
+    "gate",
+    "budgets"
+  ],
+  "additionalProperties": false
+}
