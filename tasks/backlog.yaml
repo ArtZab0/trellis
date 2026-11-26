@@ -19,7 +19,7 @@ tasks:
     goal: dependency-cruiser config encoding docs/ARCHITECTURE.md package rules
     accept: [fixture PR importing cli from core fails; live/ restriction enforced for node built-ins]
     dependsOn: [M0-01]
-    status: todo
+    status: done
   - id: M0-04
     goal: GitHub Actions CI running pnpm verify with pinned actions (commit SHAs) and read-only default permissions
     accept: [CI green on main; actions pinned by SHA; permissions read-all by default]
