@@ -6,7 +6,7 @@ Load, validate and print every contract; give users `trellis init`, `trellis doc
 ## Interfaces
 - `@trellis/schema`: one Effect Schema per contract (`TrellisConfig`, `Constitution`, `Spec`, `Feature`, `RulePackage`, `Baseline`, `TaskSpec`, `LedgerEvent`, `EvidenceBundle`, `Certificate`, `GateReport`). `pnpm gen` emits `schemas/*.schema.json`.
 - `@trellis/core`:
-  - `loadProject(root): Effect<Project, LoadError, FileSystem>`: reads every contract file, returns a typed `Project`.
+  - `loadProject(root): Effect<Project, ProjectLoadFailed, FileSystem>`: reads every contract file, returns a typed `Project`. `ProjectLoadFailed` lists every file's `LoadError`, in path order.
   - `tierOf(paths, constitution, features): Tier`
   - `LoadError` is a tagged union carrying `{ file, line, column, path, message, fix }`.
 - `@trellis/cli`: commands registered as `{ name, args: Schema, run: Effect }`; output is human text by default and `--json` gives machine output; exit codes 0 (ok), 1 (check failed), 2 (usage/config error).

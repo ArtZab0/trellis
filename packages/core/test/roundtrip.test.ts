@@ -1,31 +1,15 @@
-import { Arbitrary, Effect, Result } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   baselineContract,
   type Contract,
   featureContract,
   ledgerEventContract,
-  parseContract,
-  printContract,
   ruleContract,
   specContract,
   taskContract,
 } from "../src/index.js";
 
-const SEED = 20261125;
-
-const roundTrips = <A>(contract: Contract<A>): Promise<string> =>
-  Effect.runPromise(
-    Arbitrary.checkEffect(
-      Arbitrary.schema(contract.schema),
-      (value) => {
-        const parsed = parseContract(contract, "generated.yaml", printContract(value));
-        expect(Result.isSuccess(parsed) ? parsed.success : parsed.failure).toEqual(value);
-        return true;
-      },
-      { runs: 1000, seed: SEED },
-    ),
-  ).then((result) => result._tag);
+import { roundTrips } from "./support.js";
 
 const contracts: ReadonlyArray<Contract<unknown>> = [
   featureContract,

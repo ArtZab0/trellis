@@ -1,5 +1,5 @@
 import { type Canonicalizable, canonicalJson, reproHash } from "@trellis/schema";
-import { Arbitrary, Effect, Result } from "effect";
+import { Result } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   type Contract,
@@ -10,20 +10,7 @@ import {
   printContract,
 } from "../src/index.js";
 
-const SEED = 20261125;
-const RUNS = { runs: 1000, seed: SEED };
-
-const check = <A>(contract: Contract<A>, property: (value: A) => void): Promise<string> =>
-  Effect.runPromise(
-    Arbitrary.checkEffect(
-      Arbitrary.schema(contract.schema),
-      (value) => {
-        property(value);
-        return true;
-      },
-      RUNS,
-    ),
-  ).then((result) => result._tag);
+import { check } from "./support.js";
 
 const reversedKeys = (value: Canonicalizable): Canonicalizable => {
   if (Array.isArray(value)) return value.map(reversedKeys);

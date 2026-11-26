@@ -2,6 +2,7 @@ import type { Constitution, Feature } from "@trellis/schema";
 import { Arbitrary, Effect, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 import { tierOf } from "../src/index.js";
+import { RUNS } from "./support.js";
 
 const base: Constitution = {
   version: 1,
@@ -90,7 +91,7 @@ describe("CORE-04 tierOf", () => {
           );
           return true;
         },
-        { runs: 1000, seed: 20261125 },
+        RUNS,
       ),
     );
     expect(outcome._tag).toBe("Passed");
