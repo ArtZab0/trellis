@@ -22,3 +22,4 @@ export { Baseline, RulePackage } from "./rule.js";
 export { TaskSpec } from "./task.js";
 export { Spec } from "./spec.js";
 export { Duration, Expr, FieldType, Ident, Step } from "./spec-parts.js";
+export { contractSchemas, type GeneratedFile, jsonSchemaFiles } from "./json-schema.js";

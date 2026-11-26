@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ledger-event",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [
+        1
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "at": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "review-comment",
+        "human-edit",
+        "revert",
+        "escaped-defect",
+        "incident",
+        "verifier-reject",
+        "reprompt",
+        "replay-comment",
+        "drift"
+      ]
+    },
+    "repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pr": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "commit": {
+      "type": "string"
+    },
+    "feature": {
+      "type": "string",
+      "minLength": 1
+    },
+    "area": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diff": {
+      "type": "string"
+    },
+    "cluster": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resolution": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "api",
+            "rule",
+            "property",
+            "prose",
+            "wontfix"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "id",
+    "at",
+    "kind",
+    "repo",
+    "text"
+  ],
+  "additionalProperties": false
+}

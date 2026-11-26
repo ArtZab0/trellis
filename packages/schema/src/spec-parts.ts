@@ -64,7 +64,7 @@ export const FieldType: Schema.Codec<FieldType> = Schema.Union([
   Schema.Struct({ optional: Schema.suspend(() => FieldType) }),
   Schema.Struct({ type: Schema.Literal("Text"), ...Bounds, pattern: Schema.optionalKey(Text) }),
   Schema.Struct({ type: Schema.Literals(["Int", "Decimal", "Money"]), ...Bounds }),
-]);
+]).annotate({ identifier: "FieldType" });
 
 /** Fields every spec clause carries (CONTRACTS §3). */
 export const ClauseFields = {

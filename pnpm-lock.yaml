@@ -98,6 +98,12 @@ importers:
 
   tooling/dep-checks: {}
 
+  tooling/gen:
+    dependencies:
+      '@trellis/schema':
+        specifier: workspace:*
+        version: link:../../packages/schema
+
   tooling/lint-checks: {}
 
   tooling/repo-checks: {}

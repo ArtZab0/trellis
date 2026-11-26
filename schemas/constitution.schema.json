@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "constitution",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [
+        1
+      ]
+    },
+    "humans": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "paths": {
+      "type": "object",
+      "properties": {
+        "tier3": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "tier2": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "tier0": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "tier3",
+        "tier2"
+      ],
+      "additionalProperties": false
+    },
+    "trust": {
+      "type": "object",
+      "properties": {
+        "earn": {
+          "type": "object",
+          "properties": {
+            "consecutiveCleanMerges": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "minMutationScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "require": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "driver",
+                  "properties",
+                  "spec-clauses"
+                ]
+              }
+            }
+          },
+          "required": [
+            "consecutiveCleanMerges",
+            "minMutationScore",
+            "require"
+          ],
+          "additionalProperties": false
+        },
+        "demoteOn": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "escaped_defect",
+              "revert",
+              "incident"
+            ]
+          }
+        }
+      },
+      "required": [
+        "earn",
+        "demoteOn"
+      ],
+      "additionalProperties": false
+    },
+    "automerge": {
+      "type": "object",
+      "properties": {
+        "tier0": {
+          "type": "boolean"
+        },
+        "tier1": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "whenArea": {
+                  "type": "string",
+                  "enum": [
+                    "earned"
+                  ]
+                },
+                "samplingRate": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "whenArea",
+                "samplingRate"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "tier0",
+        "tier1"
+      ],
+      "additionalProperties": false
+    },
+    "breaker": {
+      "type": "object",
+      "properties": {
+        "revertRate7d": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "escapedPer100": {
+          "type": "number",
+          "minimum": 0
+        },
+        "changeFailureRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "costSpikeMultiple": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "revertRate7d",
+        "escapedPer100",
+        "changeFailureRate",
+        "costSpikeMultiple"
+      ],
+      "additionalProperties": false
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "allow": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "requireTier": {
+          "type": "number",
+          "enum": [
+            2,
+            3
+          ]
+        }
+      },
+      "required": [
+        "allow",
+        "requireTier"
+      ],
+      "additionalProperties": false
+    },
+    "uncertifiedZones": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "trends": {
+      "type": "object",
+      "properties": {
+        "baselineCommits": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "erosionMaxIncrease": {
+          "type": "number",
+          "minimum": 0
+        },
+        "verbosityMaxIncrease": {
+          "type": "number",
+          "minimum": 0
+        },
+        "linesPerClauseMax": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "buildSecondsMax": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "baselineCommits",
+        "erosionMaxIncrease",
+        "verbosityMaxIncrease",
+        "linesPerClauseMax",
+        "buildSecondsMax"
+      ],
+      "additionalProperties": false
+    },
+    "prototypes": {
+      "type": "object",
+      "properties": {
+        "globs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "defaultExpiryDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "flagRequired": {
+          "type": "boolean",
+          "enum": [
+            true
+          ]
+        }
+      },
+      "required": [
+        "globs",
+        "defaultExpiryDays",
+        "flagRequired"
+      ],
+      "additionalProperties": false
+    },
+    "markdown": {
+      "type": "object",
+      "properties": {
+        "agentWritableGlobs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "maxBytesPerFile": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "agentWritableGlobs",
+        "maxBytesPerFile"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "humans",
+    "paths",
+    "trust",
+    "automerge",
+    "breaker",
+    "dependencies",
+    "uncertifiedZones",
+    "trends",
+    "prototypes",
+    "markdown"
+  ],
+  "additionalProperties": false
+}

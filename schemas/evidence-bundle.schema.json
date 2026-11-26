@@ -1,0 +1,659 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "evidence-bundle",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "enum": [
+        1
+      ]
+    },
+    "repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pr": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "base": {
+      "type": "string"
+    },
+    "head": {
+      "type": "string"
+    },
+    "task": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tier": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "value",
+        "reasons"
+      ],
+      "additionalProperties": false
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "named": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "impacted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "named",
+        "impacted"
+      ],
+      "additionalProperties": false
+    },
+    "stages": {
+      "type": "object",
+      "properties": {
+        "classify": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "static": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "stack-rules": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "trend": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "spec-lints": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "spec-consistency": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "traceability": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "unit": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "machines": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "dst": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "mutation": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "perf": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "build": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "verify-runs": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "differential": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "policy": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "detail"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "classify",
+        "static",
+        "stack-rules",
+        "trend",
+        "spec-lints",
+        "spec-consistency",
+        "traceability",
+        "unit",
+        "properties",
+        "machines",
+        "dst",
+        "mutation",
+        "perf",
+        "build",
+        "verify-runs",
+        "differential",
+        "policy"
+      ],
+      "additionalProperties": false
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "feature": {
+            "type": "string",
+            "minLength": 1
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "base",
+              "head"
+            ]
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "artifacts": {
+            "type": "object",
+            "properties": {
+              "video": {
+                "type": "string"
+              },
+              "rrweb": {
+                "type": "string"
+              },
+              "trace": {
+                "type": "string"
+              },
+              "screenshots": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "perf": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "screenshots"
+            ],
+            "additionalProperties": false
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "counterexample": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "verdict"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "feature",
+          "side",
+          "seed",
+          "artifacts",
+          "properties"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "diffs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "feature": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "visual",
+              "structural",
+              "behavioral",
+              "perf"
+            ]
+          },
+          "expected": {
+            "type": "boolean"
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "feature",
+          "kind",
+          "expected",
+          "detail"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "verifier": {
+      "type": "object",
+      "properties": {
+        "runner": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "approve",
+            "reject",
+            "escalate"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "runner",
+        "model",
+        "verdict",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "cost": {
+      "type": "object",
+      "properties": {
+        "usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "tokensIn": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "tokensOut": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "verifyShare": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "usd",
+        "tokensIn",
+        "tokensOut",
+        "verifyShare"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "repo",
+    "base",
+    "head",
+    "tier",
+    "features",
+    "stages",
+    "runs",
+    "diffs",
+    "cost"
+  ],
+  "additionalProperties": false
+}
