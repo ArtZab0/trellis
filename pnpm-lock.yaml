@@ -88,6 +88,9 @@ importers:
 
   packages/github:
     dependencies:
+      '@trellis/core':
+        specifier: workspace:*
+        version: link:../core
       '@trellis/schema':
         specifier: workspace:*
         version: link:../schema
