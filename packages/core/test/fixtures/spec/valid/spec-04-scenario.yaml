@@ -1,0 +1,31 @@
+version: 1
+id: late-cancel
+packs: []
+policies: {}
+entities:
+  Booking:
+    fields: { id: Id, fee: Money }
+    key: [id]
+roles: [guest]
+permissions: {}
+commands:
+  cancelBooking:
+    input: { booking: { ref: Booking } }
+    actor: [guest]
+    effects: [Booking.status := cancelled]
+    clauses: [SC-late-cancel]
+machines: {}
+invariants: []
+scenarios:
+  - id: SC-late-cancel
+    says: Cancelling within 24 hours charges a fee.
+    source: user
+    approval: { by: "@ArtZab0", at: 2026-11-25T10:00:00Z, via: scenario-replay }
+    given:
+      - { do: createBooking, as: guest, with: { startsAt: 2026-12-01T10:00:00Z } }
+      - { at: 2026-11-30T12:00:00Z }
+    when:
+      - { do: cancelBooking, as: guest }
+    then:
+      - Booking.fee > 0
+budgets: []

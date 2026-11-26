@@ -1,0 +1,13 @@
+version: 1
+id: time-display
+packs: []
+policies:
+  time: { storage: utc, display: Europe/Berlin }
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

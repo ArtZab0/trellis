@@ -1,0 +1,13 @@
+version: 1
+id: bad
+packs: []
+policies:
+  money: { minorUnits: true, rounding: ceiling, currencies: [USD] }
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

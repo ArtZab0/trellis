@@ -1,0 +1,15 @@
+version: 1
+id: bad
+packs: []
+policies: {}
+entities:
+  A:
+    fields: { x: Float }
+    key: [x]
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

@@ -1,0 +1,13 @@
+version: 1
+id: bad
+packs: []
+policies: {}
+entities: {}
+roles: []
+actors: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

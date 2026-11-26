@@ -1,0 +1,27 @@
+version: 1
+id: booking
+packs: []
+policies:
+  time: { storage: utc, display: org-local }
+entities:
+  Booking:
+    fields: { id: Id, status: { enum: [held, confirmed, cancelled] }, startsAt: Instant }
+    key: [id]
+roles: [guest, staff]
+permissions:
+  Booking: { create: [guest], cancel: [guest, staff] }
+commands: {}
+machines:
+  booking:
+    entity: Booking
+    initial: held
+    states:
+      held:
+        on: { confirm: confirmed, cancel: cancelled }
+        timeout: { after: 15m, to: cancelled }
+      confirmed:
+        on: { cancel: cancelled }
+      cancelled: { terminal: true }
+invariants: []
+scenarios: []
+budgets: []

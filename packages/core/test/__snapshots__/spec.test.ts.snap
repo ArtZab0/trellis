@@ -1,0 +1,121 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-01-missing-roles.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 1,
+  "file": "spec-01-missing-roles.yaml",
+  "fix": "Add the required key "roles" at the top level.",
+  "line": 1,
+  "message": "Missing key",
+  "path": "roles",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-02-bad-clause-id.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 11,
+  "file": "spec-02-bad-clause-id.yaml",
+  "fix": "Change invariants[0].id so it matches: Expected a clause id such as "INV-balanced". See docs/CONTRACTS.md (Spec).",
+  "line": 11,
+  "message": "Expected a clause id such as "INV-balanced"",
+  "path": "invariants[0].id",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-03-unknown-source.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 35,
+  "file": "spec-03-unknown-source.yaml",
+  "fix": "Change invariants[0].source so it matches: Expected "user" | "default" | "redteam" | "incident". See docs/CONTRACTS.md (Spec).",
+  "line": 11,
+  "message": "Expected "user" | "default" | "redteam" | "incident"",
+  "path": "invariants[0].source",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-04-unknown-field-type.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 18,
+  "file": "spec-04-unknown-field-type.yaml",
+  "fix": "Change entities.A.fields.x so it matches: Expected "Id" | "Text" | "Bool" | "Int" | "Decimal" | "Money" | "Currency" | "Instant" | "Date" | "Duration" | "Email" | "Url". See docs/CONTRACTS.md (Spec).",
+  "line": 7,
+  "message": "Expected "Id" | "Text" | "Bool" | "Int" | "Decimal" | "Money" | "Currency" | "Instant" | "Date" | "Duration" | "Email" | "Url"",
+  "path": "entities.A.fields.x",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-05-bad-duration.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 16,
+  "file": "spec-05-bad-duration.yaml",
+  "fix": "Change policies.retention.A.keep so it matches: Expected a duration such as "30d" or "12h". See docs/CONTRACTS.md (Spec).",
+  "line": 6,
+  "message": "Expected a duration such as "30d" or "12h"",
+  "path": "policies.retention.A.keep",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-06-money-rounding.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 40,
+  "file": "spec-06-money-rounding.yaml",
+  "fix": "Change policies.money.rounding so it matches: Expected "half-even" | "half-up". See docs/CONTRACTS.md (Spec).",
+  "line": 5,
+  "message": "Expected "half-even" | "half-up"",
+  "path": "policies.money.rounding",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-07-terminal-false.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 22,
+  "file": "spec-07-terminal-false.yaml",
+  "fix": "Change machines.m.states.s.terminal so it matches: Expected true. See docs/CONTRACTS.md (Spec).",
+  "line": 14,
+  "message": "Expected true",
+  "path": "machines.m.states.s.terminal",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-08-budget-unit.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 66,
+  "file": "spec-08-budget-unit.yaml",
+  "fix": "Change budgets[0].unit so it matches: Expected "instructions" | "bytes" | "ms" | "count". See docs/CONTRACTS.md (Spec).",
+  "line": 13,
+  "message": "Expected "instructions" | "bytes" | "ms" | "count"",
+  "path": "budgets[0].unit",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-09-unknown-key.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 9,
+  "file": "spec-09-unknown-key.yaml",
+  "fix": "Remove "actors" at the top level, or fix its spelling; it is not part of the Spec format.",
+  "line": 7,
+  "message": "Expected no excess property",
+  "path": "actors",
+}
+`;
+
+exports[`M1-03 invalid spec fixtures fail with a located error > rejects spec-10-bad-pack-version.yaml 1`] = `
+{
+  "_tag": "InvalidContract",
+  "column": 25,
+  "file": "spec-10-bad-pack-version.yaml",
+  "fix": "Change packs[0].version so it matches: Expected a semver such as 1.4.0. See docs/CONTRACTS.md (Spec).",
+  "line": 4,
+  "message": "Expected a semver such as 1.4.0",
+  "path": "packs[0].version",
+}
+`;

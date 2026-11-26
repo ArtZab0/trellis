@@ -1,0 +1,13 @@
+version: 1
+id: bad
+packs:
+  - { name: p, version: latest }
+policies: {}
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

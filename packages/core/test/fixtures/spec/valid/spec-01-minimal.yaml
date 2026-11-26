@@ -1,0 +1,12 @@
+version: 1
+id: minimal
+packs: []
+policies: {}
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

@@ -1,0 +1,14 @@
+version: 1
+id: bad
+packs: []
+policies:
+  retention:
+    A: { keep: 30 days, then: delete }
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []
