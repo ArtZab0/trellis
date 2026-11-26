@@ -29,7 +29,7 @@ tasks:
     goal: CODEOWNERS, PR template (task id, criteria→verification, test summary, evidence link), labels
     accept: [contracts/ADRs/.trellis/.github owned by humans; PR template present]
     dependsOn: [M0-01]
-    status: todo
+    status: done
 
   # ---------- M1 Contracts & config ----------
   - id: M1-01

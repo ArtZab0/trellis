@@ -78,6 +78,8 @@ importers:
 
   tooling/lint-checks: {}
 
+  tooling/repo-checks: {}
+
 packages:
 
   '@biomejs/biome@2.6.7':
