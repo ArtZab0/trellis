@@ -1,0 +1,13 @@
+version: 1
+id: bad
+packs: []
+policies: {}
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants:
+  - { id: balanced, says: x, source: user, expr: "1 == 1" }
+scenarios: []
+budgets: []

@@ -1,0 +1,17 @@
+version: 1
+id: bad
+packs: []
+policies: {}
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines:
+  m:
+    entity: A
+    initial: s
+    states:
+      s: { terminal: false }
+invariants: []
+scenarios: []
+budgets: []

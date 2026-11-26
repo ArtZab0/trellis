@@ -1,0 +1,14 @@
+version: 1
+id: budgets
+packs: []
+policies: {}
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets:
+  - { id: BUD-recalc, says: Recalculating a ledger stays cheap., source: default, metric: recalc, max: 5000000, unit: instructions }
+  - { id: BUD-bundle, says: The page bundle stays small., source: redteam, metric: bundle, max: 250000, unit: bytes }

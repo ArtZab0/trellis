@@ -5,6 +5,7 @@ export {
   featureContract,
   ledgerEventContract,
   ruleContract,
+  specContract,
   taskContract,
 } from "./load/contracts.js";
 export {

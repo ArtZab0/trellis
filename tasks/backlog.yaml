@@ -46,7 +46,7 @@ tasks:
     goal: Effect Schema for Spec incl. FieldType and Clause (expressions kept as strings until M4)
     accept: [CORE-01; 10 valid + 10 invalid spec fixtures]
     dependsOn: [M1-01]
-    status: todo
+    status: done
   - id: M1-04
     goal: Effect Schema for EvidenceBundle, Certificate (incl. checks.byOrigin, differential, trends), GateReport, CheckOrigin + canonical JSON + reproHash function
     accept: [CORE-01; canonical JSON is key-sorted and stable; reproHash excludes issuedAt/signatures (property test)]

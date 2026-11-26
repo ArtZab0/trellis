@@ -1,0 +1,23 @@
+version: 1
+id: retention
+packs: []
+policies:
+  retention:
+    Session: { keep: 30d, then: delete }
+    User: { keep: 52w, then: anonymize }
+  personalData:
+    User.email: { purpose: login, readableBy: [admin] }
+entities:
+  User:
+    fields: { id: Id, email: Email, homepage: { optional: Url } }
+    key: [id]
+  Session:
+    fields: { id: Id, user: { ref: User }, expiresAt: Instant }
+    key: [id]
+roles: [admin, member]
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []

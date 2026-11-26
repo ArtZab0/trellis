@@ -16,3 +16,5 @@ export { Feature } from "./feature.js";
 export { LedgerEvent } from "./ledger.js";
 export { Baseline, RulePackage } from "./rule.js";
 export { TaskSpec } from "./task.js";
+export { Spec } from "./spec.js";
+export { Duration, Expr, FieldType, Ident, Step } from "./spec-parts.js";

@@ -4,6 +4,7 @@ import {
   Feature,
   LedgerEvent,
   RulePackage,
+  Spec,
   TaskSpec,
   TrellisConfig,
 } from "@trellis/schema";
@@ -49,3 +50,6 @@ export const ledgerEventContract: Contract<LedgerEvent> = {
   version: 1,
   schema: LedgerEvent,
 };
+
+/** `spec/*.yaml`. */
+export const specContract: Contract<Spec> = { name: "Spec", version: 1, schema: Spec };

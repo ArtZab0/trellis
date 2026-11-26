@@ -1,0 +1,19 @@
+version: 1
+id: conditions
+packs: []
+policies: {}
+entities:
+  Document:
+    fields: { id: Id, owner: Id }
+    key: [id]
+roles: [member]
+permissions:
+  Document:
+    read: [member]
+    update: Document.owner == actor.id
+commands: {}
+machines: {}
+invariants:
+  - { id: INV-owned, says: Every document has an owner., source: incident, expr: "forall d in Document: d.owner != null" }
+scenarios: []
+budgets: []

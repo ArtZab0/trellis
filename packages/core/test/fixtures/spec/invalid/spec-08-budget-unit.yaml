@@ -1,0 +1,13 @@
+version: 1
+id: bad
+packs: []
+policies: {}
+entities: {}
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets:
+  - { id: BUD-x, says: x, source: user, metric: m, max: 1, unit: seconds }

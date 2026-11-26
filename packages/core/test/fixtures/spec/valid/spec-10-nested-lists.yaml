@@ -1,0 +1,15 @@
+version: 1
+id: nested
+packs: []
+policies: {}
+entities:
+  Matrix:
+    fields: { id: Id, rows: { list: { list: Int } }, note: { optional: { list: Text } } }
+    key: [id]
+roles: []
+permissions: {}
+commands: {}
+machines: {}
+invariants: []
+scenarios: []
+budgets: []
