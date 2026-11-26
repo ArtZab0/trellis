@@ -4,8 +4,7 @@ name: codehost-live
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
+permissions: read-all
 
 concurrency:
   group: codehost-live
