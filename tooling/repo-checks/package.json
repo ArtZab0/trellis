@@ -1,0 +1,12 @@
+{
+  "name": "@trellis/tooling-repo-checks",
+  "version": "0.0.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run"
+  }
+}
