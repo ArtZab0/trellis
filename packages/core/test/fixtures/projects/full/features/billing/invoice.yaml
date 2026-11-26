@@ -1,0 +1,11 @@
+version: 1
+id: billing.invoice
+title: Create an invoice
+area: billing
+tier: 2
+owner: "@ArtZab0"
+entry: { route: /invoices/new }
+clauses: [INV-balanced]
+properties:
+  - { id: P-total, says: The total is the sum of lines., impl: "src/billing/total.ts#total" }
+touches: { code: ["src/billing/**"], data: [Invoice] }

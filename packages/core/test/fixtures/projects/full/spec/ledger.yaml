@@ -1,0 +1,25 @@
+version: 1
+id: ledger
+packs:
+  - { name: spec-ledger, version: 1.0.0 }
+policies:
+  money: { minorUnits: true, rounding: half-even, currencies: [USD, EUR] }
+entities:
+  Account:
+    fields: { id: Id, name: Text, currency: Currency }
+    key: [id]
+  Entry:
+    fields: { id: Id, account: { ref: Account }, amount: Money, postedAt: Instant }
+    key: [id]
+roles: [bookkeeper, auditor]
+permissions:
+  Entry: { create: [bookkeeper], read: [bookkeeper, auditor] }
+commands: {}
+machines: {}
+invariants:
+  - id: INV-balanced
+    says: Debits and credits always sum to zero.
+    source: pack:spec-ledger
+    expr: sum(Entry.amount) == 0
+scenarios: []
+budgets: []

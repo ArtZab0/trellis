@@ -1,0 +1,8 @@
+version: 1
+id: T-1
+goal: Add invoice totals
+features: [billing.invoice]
+accept: [INV-balanced]
+tierCeiling: 2
+budget: { usd: 5, wallMinutes: 60, attempts: 3 }
+mode: maintenance
