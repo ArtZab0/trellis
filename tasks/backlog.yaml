@@ -51,7 +51,7 @@ tasks:
     goal: Effect Schema for EvidenceBundle, Certificate (incl. checks.byOrigin, differential, trends), GateReport, CheckOrigin + canonical JSON + reproHash function
     accept: [CORE-01; canonical JSON is key-sorted and stable; reproHash excludes issuedAt/signatures (property test)]
     dependsOn: [M1-01]
-    status: todo
+    status: done
   - id: M1-05
     goal: JSON Schema generation (pnpm gen) for all contracts into schemas/
     accept: [generated files committed; CI fails if stale]
