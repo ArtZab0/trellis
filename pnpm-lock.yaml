@@ -73,7 +73,18 @@ importers:
 
   packages/gate: {}
 
-  packages/github: {}
+  packages/github:
+    dependencies:
+      '@trellis/schema':
+        specifier: workspace:*
+        version: link:../schema
+      effect:
+        specifier: 4.1.4
+        version: 4.1.4
+    devDependencies:
+      yaml:
+        specifier: 2.9.1
+        version: 2.9.1
 
   packages/ledger: {}
 
