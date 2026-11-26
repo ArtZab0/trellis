@@ -11,6 +11,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@trellis/schema": "workspace:*"
+    "@trellis/core": "workspace:*",
+    "@trellis/github": "workspace:*",
+    "@trellis/schema": "workspace:*",
+    "effect": "4.1.4"
   }
 }
