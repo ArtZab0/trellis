@@ -1,0 +1,8 @@
+version: 1
+id: Bad_Rule
+kind: api-ban
+engine: eslint
+scope: { include: ["src/**/*.ts"] }
+tier: 1
+message: message.md
+fixtures: { bad: fixtures/bad, good: fixtures/good }

@@ -61,7 +61,7 @@ tasks:
     goal: core.loadProject + tierOf
     accept: [CORE-04; loadProject on fixture repos returns typed Project or LoadErrors]
     dependsOn: [M1-02, M1-03]
-    status: todo
+    status: done
   - id: M1-07
     goal: CLI shell (command registry, --json, exit codes) + trellis init
     accept: [CLI-01]
