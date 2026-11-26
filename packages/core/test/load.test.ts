@@ -1,33 +1,19 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { Arbitrary, Effect, Result } from "effect";
+import { Result } from "effect";
 import { describe, expect, it } from "vitest";
 import {
   type Contract,
   configContract,
   constitutionContract,
   parseContract,
-  printContract,
 } from "../src/index.js";
 
 const here = fileURLToPath(new URL(".", import.meta.url));
 const fixtures = join(here, "fixtures");
 const read = (path: string): string => readFileSync(path, "utf8");
-const SEED = 20261125;
-
-const roundTrips = <A>(contract: Contract<A>): Promise<string> =>
-  Effect.runPromise(
-    Arbitrary.checkEffect(
-      Arbitrary.schema(contract.schema),
-      (value) => {
-        const parsed = parseContract(contract, "generated.yaml", printContract(value));
-        expect(Result.isSuccess(parsed) ? parsed.success : parsed.failure).toEqual(value);
-        return true;
-      },
-      { runs: 1000, seed: SEED },
-    ),
-  ).then((result) => result._tag);
+import { roundTrips } from "./support.js";
 
 const contractFor = (name: string): Contract<unknown> =>
   name.startsWith("config") ? configContract : constitutionContract;

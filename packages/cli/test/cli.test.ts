@@ -83,21 +83,8 @@ describe("CLI-01 trellis init", () => {
   });
 });
 
-describe("CLI shell: exit codes and --json", () => {
-  it("no command prints usage and exits 2", async () => {
-    const out = await run(new Map(), []);
-    expect(out.exitCode).toBe(2);
-    expect(out.stderr).toContain("Usage: trellis <command>");
-  });
-
-  it("an unknown command exits 2", async () => {
-    expect((await run(new Map(), ["frobnicate"])).exitCode).toBe(2);
-  });
-
-  it("an unknown flag or bad value exits 2 and names the flag", async () => {
-    const unknown = await run(new Map(), ["init", "--colour", "red"]);
-    expect(unknown.exitCode).toBe(2);
-    expect(unknown.stderr).toContain("colour");
+describe("trellis init errors (shell behaviour itself is in shell.test.ts)", () => {
+  it("an unsupported --stack exits 2", async () => {
     expect((await run(new Map(), ["init", "--stack", "stack-go"])).exitCode).toBe(2);
   });
 
@@ -108,10 +95,8 @@ describe("CLI shell: exit codes and --json", () => {
     expect(out.stderr).toMatch(/constitution\.yaml:\d+:/);
   });
 
-  it("--json prints one JSON document on stdout", async () => {
+  it("--json reports each path and what happened to it", async () => {
     const out = await run(new Map(), ["init", "--json"]);
-    const parsed: unknown = JSON.parse(out.stdout);
-    expect(parsed).toHaveProperty("changes");
-    expect(out.stdout.trim().split("\n")).toHaveLength(1);
+    expect(out.stdout).toContain('{"path":"CODEOWNERS","change":"created"}');
   });
 });
