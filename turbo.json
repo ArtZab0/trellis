@@ -4,6 +4,21 @@
     "build": { "dependsOn": ["^build"], "outputs": ["dist/**"] },
     "typecheck": { "dependsOn": ["^build"] },
     "lint": { "dependsOn": ["^build"] },
-    "test": { "dependsOn": ["^build"] }
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/.github/**",
+        "$TURBO_ROOT$/.trellis/**",
+        "$TURBO_ROOT$/CODEOWNERS",
+        "$TURBO_ROOT$/schemas/**",
+        "$TURBO_ROOT$/.dependency-cruiser.cjs",
+        "$TURBO_ROOT$/eslint.config.js",
+        "$TURBO_ROOT$/biome.json",
+        "$TURBO_ROOT$/package.json",
+        "$TURBO_ROOT$/tsconfig.base.json",
+        "$TURBO_ROOT$/turbo.json"
+      ]
+    }
   }
 }
