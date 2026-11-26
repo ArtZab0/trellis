@@ -6,11 +6,15 @@ import type { CodeHostShape, Label, Ruleset } from "../src/index.js";
  * The CodeHost contract. The recorded fake and the live GitHub adapter both run this suite; the
  * live one against a scratch repo that has a `README.md` on its default branch.
  */
-export const codeHostContract = (name: string, makeHost: () => CodeHostShape): void => {
+export const codeHostContract = (
+  name: string,
+  makeHost: () => CodeHostShape,
+  options: { readonly appPermissions: boolean } = { appPermissions: true },
+): void => {
   const run = <A, E>(effect: Effect.Effect<A, E>): Promise<A> => Effect.runPromise(effect);
   const ruleset: Ruleset = {
     name: "trellis-contract",
-    enforcement: "evaluate",
+    enforcement: "active",
     branches: ["refs/heads/trellis-contract"],
     requiredChecks: ["trellis/gate", "trellis/policy"],
     requiredApprovals: 1,
@@ -57,12 +61,14 @@ export const codeHostContract = (name: string, makeHost: () => CodeHostShape): v
       expect(await run(host.readFile(path))).toEqual(Option.some("after\n"));
     });
 
-    it("appPermissions reports an access level per permission", async () => {
-      const permissions = await run(makeHost().appPermissions());
-      expect(Object.keys(permissions).length).toBeGreaterThan(0);
-      for (const access of Object.values(permissions)) {
-        expect(["read", "write", "admin"]).toContain(access);
-      }
-    });
+    if (options.appPermissions) {
+      it("appPermissions reports an access level per permission", async () => {
+        const permissions = await run(makeHost().appPermissions());
+        expect(Object.keys(permissions).length).toBeGreaterThan(0);
+        for (const access of Object.values(permissions)) {
+          expect(["read", "write", "admin"]).toContain(access);
+        }
+      });
+    }
   });
 };
