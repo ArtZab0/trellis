@@ -1,4 +1,12 @@
-export { configContract, constitutionContract } from "./load/contracts.js";
+export {
+  baselineContract,
+  configContract,
+  constitutionContract,
+  featureContract,
+  ledgerEventContract,
+  ruleContract,
+  taskContract,
+} from "./load/contracts.js";
 export {
   InvalidContract,
   InvalidYaml,

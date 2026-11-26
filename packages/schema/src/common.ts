@@ -29,3 +29,13 @@ export const PinnedImage = Schema.String.check(
     expected: "an image pinned by digest, such as ghcr.io/org/img@sha256:<64 hex>",
   }),
 );
+
+/** A risk tier: 0 (lowest) to 3 (highest). */
+export const Tier = Schema.Literals([0, 1, 2, 3]);
+
+/** A spec clause id such as `INV-balanced` or `SC-late-cancel`. */
+export const ClauseId = Schema.String.check(
+  Schema.isPattern(/^[A-Z][A-Z0-9]*-[A-Za-z0-9._-]+$/, {
+    expected: 'a clause id such as "INV-balanced"',
+  }),
+);
