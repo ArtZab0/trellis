@@ -14,13 +14,14 @@
     "verify": "biome format . && turbo run build typecheck lint test && pnpm deps",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "deps": "depcruise -c .dependency-cruiser.cjs -T err packages apps packs"
+    "deps": "depcruise -c .dependency-cruiser.cjs -T err packages/*/src packages/*/test apps/*/src packs/*/src tooling/*/src"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.7",
     "@types/node": "26.6.6",
     "dependency-cruiser": "18.7.2",
     "eslint": "10.14.0",
+    "fast-check": "4.10.2",
     "turbo": "2.11.13",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.2",

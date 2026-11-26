@@ -53,9 +53,13 @@ module.exports = {
     },
   ],
   options: {
-    doNotFollow: { path: "node_modules" },
-    exclude: { path: "(^|/)(dist|node_modules|fixtures)/" },
+    doNotFollow: { path: "(^|/)(node_modules|dist)/" },
+    exclude: { path: "(^|/)fixtures/" },
     tsPreCompilationDeps: true,
-    enhancedResolveOptions: { conditionNames: ["types", "import", "default"] },
+    enhancedResolveOptions: {
+      exportsFields: ["exports"],
+      conditionNames: ["types", "import", "default"],
+      extensions: [".ts", ".d.ts", ".js"],
+    },
   },
 };
